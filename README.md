@@ -28,10 +28,3 @@ A frontend wallet management dashboard built with *Next.js* and *TanStack Query 
 
 ---
 
-## Getting Started
-
-### 1. Clone the repo
-
-```bash
-git clone https://github.com/your-username/wallet-management-system.git
-cd wallet-management-system
