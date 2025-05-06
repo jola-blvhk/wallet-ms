@@ -7,8 +7,6 @@ import WithdrawForm from "./WithdrawForm";
 import TransferForm from "./TransferForm";
 import TransactionHistory from "./TransactionHistory";
 import { useWalletBalance } from "@/services/queries";
-import { Switch } from "@mui/material";
-import { SunIcon, MoonIcon } from "@heroicons/react/24/solid";
 
 export default function WalletDashboard() {
   const mainBalanceId = "bln_d4c44831-2441-41b2-b85f-682e23179ca0";
@@ -18,8 +16,15 @@ export default function WalletDashboard() {
 
   const [darkMode, setDarkMode] = useState(false);
 
-
-
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    if (!darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  };
+  console.log(toggleDarkMode);
   return (
     <div
       className={`p-6 space-y-6 h-screen overflow-y-auto shadow-lg rounded-xl  
