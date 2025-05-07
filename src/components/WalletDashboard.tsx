@@ -35,9 +35,9 @@ export default function WalletDashboard() {
         <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
           Wallet Dashboard
         </h1>
-        <button className="px-4 py-2 text-white bg-blue-500 rounded-md">
+        {/* <button className="px-4 py-2 text-white bg-blue-500 rounded-md">
           Create Identity
-        </button>
+        </button> */}
       </div>
 
       {/* Dark Mode Toggle */}
@@ -54,7 +54,7 @@ export default function WalletDashboard() {
         <BalanceCard label="Card Wallet" balance={cardBalance?.balance} />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <DepositForm />
         <WithdrawForm balance={mainBalance?.balance ?? 0} />
         <TransferForm balance={mainBalance?.balance ?? 0} />

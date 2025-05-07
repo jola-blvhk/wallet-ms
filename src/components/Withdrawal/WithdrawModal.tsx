@@ -21,6 +21,11 @@ export default function WithdrawModal({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!amount || amount <= 0) {
+      toast.error("Please enter a valid amount");
+      return;
+    }
+
     const amountInCents = amount * 100;
 
     if (amountInCents > balance) {
@@ -60,7 +65,7 @@ export default function WithdrawModal({
 
   return (
     <div
-      className={`fixed inset-0 bg-black/50 flex items-center justify-center ${
+      className={`fixed inset-0 bg-black/50 z-50 flex items-center justify-center ${
         !isOpen && "hidden"
       }`}
     >

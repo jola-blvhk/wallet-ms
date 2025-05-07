@@ -16,6 +16,11 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!amount || amount <= 0) {
+      toast.error("Please enter a valid amount");
+      return;
+    }
+
     const payload = {
       amount: amount * 100,
       precision: 100,
@@ -23,7 +28,7 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
       description: description || "Deposit to main wallet",
       currency: "USD",
       source: "@WorldUSD",
-        destination: "bln_cd182069-a1a6-4305-b2e8-d1949da22bdb",
+      destination: "bln_cd182069-a1a6-4305-b2e8-d1949da22bdb",
       skip_queue: true,
       allow_overdraft: true,
       meta_data: {
@@ -47,7 +52,7 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
+    <div className="fixed inset-0  bg-black/50 z-50 flex items-center justify-center">
       <div className="bg-white dark:bg-gray-800 p-6 rounded-xl w-full max-w-md">
         <h2 className="text-xl font-semibold mb-4 dark:text-white">
           Deposit to Main Wallet
