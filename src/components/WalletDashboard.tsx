@@ -2,15 +2,15 @@
 
 import { useState } from "react";
 import BalanceCard from "./BalanceCard";
-import DepositForm from "./DepositForm";
-import WithdrawForm from "./WithdrawForm";
-import TransferForm from "./TransferForm";
+import DepositForm from "./Deposit/DepositForm";
+import WithdrawForm from "./Withdrawal/WithdrawForm";
+import TransferForm from "./TransferToCard/TransferForm";
 import TransactionHistory from "./TransactionHistory";
 import { useWalletBalance } from "@/services/queries";
 
 export default function WalletDashboard() {
-  const mainBalanceId = "bln_d4c44831-2441-41b2-b85f-682e23179ca0";
-  const cardBalanceId = "bln_c06ab261-01a7-4fd6-a9a4-87768e07925a";
+  const mainBalanceId = "bln_cd182069-a1a6-4305-b2e8-d1949da22bdb";
+  const cardBalanceId = "bln_5a409804-08eb-43c9-bb7b-3d56a1c50f8e";
   const { data: mainBalance } = useWalletBalance(mainBalanceId);
   const { data: cardBalance } = useWalletBalance(cardBalanceId);
 
@@ -56,8 +56,8 @@ export default function WalletDashboard() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <DepositForm />
-        <WithdrawForm />
-        <TransferForm />
+        <WithdrawForm balance={mainBalance?.balance ?? 0} />
+        <TransferForm balance={mainBalance?.balance ?? 0} />
       </div>
 
       <TransactionHistory />
