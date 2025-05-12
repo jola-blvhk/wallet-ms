@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import axios from "axios";
 
 export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
+  req: NextRequest,
+  context: { params: { id: string } }
 ) {
   try {
-    const identityId = params.id;
+    const identityId = context.params.id;
 
     if (!identityId) {
       return NextResponse.json(
@@ -30,7 +30,7 @@ export async function GET(
     return NextResponse.json(response.data);
   } catch (error: any) {
     console.error("Error fetching identity:", error);
-    
+
     // Handle different error types
     if (error.response?.status === 404) {
       return NextResponse.json(
@@ -38,7 +38,7 @@ export async function GET(
         { status: 404 }
       );
     }
-    
+
     return NextResponse.json(
       { error: "Failed to fetch identity" },
       { status: 500 }

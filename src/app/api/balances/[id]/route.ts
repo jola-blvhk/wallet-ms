@@ -1,13 +1,14 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import axios from "axios";
 
+
 export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
+  req: NextRequest,
+  context: { params: { id: string } }
 ) {
   try {
-    const balanceId = params.id;
-    
+    const balanceId = context.params.id;
+
     if (!balanceId) {
       return NextResponse.json(
         { error: "Balance ID is required" },
