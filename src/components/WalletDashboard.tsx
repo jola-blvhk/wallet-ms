@@ -7,7 +7,7 @@ import TransferForm from "./TransferToCard/TransferForm";
 import TransactionHistory from "./TransactionHistory";
 import { useWalletBalance } from "@/services/queries";
 import { useUser } from "@/contexts/UserContext";
-import { useTheme } from "next-themes";
+
 import { useEffect, useState } from "react";
 import {
   UserIcon,
@@ -16,7 +16,6 @@ import {
 
 export default function WalletDashboard() {
   const { mainWalletId, cardWalletId, firstName, lastName, logout } = useUser();
-  const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
