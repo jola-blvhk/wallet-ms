@@ -1,4 +1,7 @@
+import { useUser } from "@/contexts/UserContext";
+import QUERYKEYS from "@/lib/queryKeys";
 import { TransactionType, useRecordTransaction } from "@/services/mutations";
+import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -13,9 +16,13 @@ export default function TransferModal({
   onClose,
   balance = 0,
 }: TransferModalProps) {
+  
+  const queryClient = useQueryClient();
   const [amount, setAmount] = useState<number>(0);
   const [description, setDescription] = useState<string>("");
 
+
+  const { mainWalletId, cardWalletId } = useUser();
   const recordTransaction = useRecordTransaction();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -26,21 +33,19 @@ export default function TransferModal({
       return;
     }
 
-    const amountInCents = amount * 100;
-
-    if (amountInCents > balance) {
+    if (amount > balance) {
       toast.error("Insufficient balance for transfer");
       return;
     }
 
     const payload = {
-      amount: amountInCents,
+      amount: amount,
       precision: 100,
       reference: `txn_${Date.now()}`,
       description: description || "Transfer to card wallet",
       currency: "USD",
-      source: "bln_cd182069-a1a6-4305-b2e8-d1949da22bdb", // Main wallet
-      destination: "bln_5a409804-08eb-43c9-bb7b-3d56a1c50f8e", // Card wallet
+      source: mainWalletId,
+      destination: cardWalletId,
       allow_overdraft: false,
       skip_queue: true,
       meta_data: {
@@ -51,6 +56,12 @@ export default function TransferModal({
 
     recordTransaction.mutate(payload, {
       onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: QUERYKEYS.getWalletBalance(mainWalletId),
+        });
+        queryClient.invalidateQueries({
+          queryKey: QUERYKEYS.getWalletBalance(cardWalletId),
+        });
         toast.success("Transfer successful! 🎉");
         onClose();
       },

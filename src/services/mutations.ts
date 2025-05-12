@@ -10,8 +10,8 @@ interface TransactionPayload {
   reference: string;
   description: string;
   currency: string;
-  source: string;
-  destination: string;
+  source: string | null;
+  destination: string | null;
   allow_overdraft: boolean;
   meta_data: {
     transaction_type: TransactionType;
@@ -26,11 +26,10 @@ export const useRecordTransaction = () => {
     mutationFn: (payload: TransactionPayload) =>
       api.post("/transactions", payload),
     onSuccess: () => {
-      // Invalidate the balance query to refetch updated balance
+      // Invalidate  transactions query to refetch updated transactions
+
       queryClient.invalidateQueries({
-        queryKey: QUERYKEYS.getWalletBalance(
-          "bln_cd182069-a1a6-4305-b2e8-d1949da22bdb"
-        ),
+        queryKey: QUERYKEYS.getWalletTransactions("main"),
       });
     },
   });

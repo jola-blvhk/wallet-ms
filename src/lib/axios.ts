@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://sandbox-0.blnkfinance.com",
+  baseURL: "/api",
   headers: {
     "Content-Type": "application/json",
   },

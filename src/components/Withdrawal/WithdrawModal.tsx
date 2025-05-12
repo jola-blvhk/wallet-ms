@@ -1,4 +1,7 @@
+import { useUser } from "@/contexts/UserContext";
+import QUERYKEYS from "@/lib/queryKeys";
 import { TransactionType, useRecordTransaction } from "@/services/mutations";
+import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -13,9 +16,11 @@ export default function WithdrawModal({
   onClose,
   balance = 0,
 }: WithdrawModalProps) {
+  const queryClient = useQueryClient();
   const [amount, setAmount] = useState<number>(0);
   const [description, setDescription] = useState<string>("");
 
+  const { mainWalletId } = useUser();
   const recordTransaction = useRecordTransaction();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -26,20 +31,18 @@ export default function WithdrawModal({
       return;
     }
 
-    const amountInCents = amount * 100;
-
-    if (amountInCents > balance) {
+    if (amount > balance) {
       toast.error("Insufficient balance for withdrawal");
       return;
     }
 
     const payload = {
-      amount: amountInCents,
+      amount: amount,
       precision: 100,
       reference: `txn_${Date.now()}`,
       description: description || "Withdraw from wallet",
       currency: "USD",
-      source: "bln_cd182069-a1a6-4305-b2e8-d1949da22bdb",
+      source: mainWalletId,
       destination: "@WorldUSD",
       allow_overdraft: false,
       skip_queue: true,
@@ -51,6 +54,9 @@ export default function WithdrawModal({
 
     recordTransaction.mutate(payload, {
       onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: QUERYKEYS.getWalletBalance(mainWalletId),
+        });
         toast.success("Withdrawal successful! 🎉");
         onClose();
       },

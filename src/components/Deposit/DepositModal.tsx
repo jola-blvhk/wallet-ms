@@ -1,4 +1,7 @@
+import { useUser } from "@/contexts/UserContext";
+import QUERYKEYS from "@/lib/queryKeys";
 import { TransactionType, useRecordTransaction } from "@/services/mutations";
+import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -8,9 +11,11 @@ interface DepositModalProps {
 }
 
 export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
+  const queryClient = useQueryClient();
   const [amount, setAmount] = useState<number>(0);
   const [description, setDescription] = useState<string>("");
 
+  const { mainWalletId } = useUser();
   const recordTransaction = useRecordTransaction();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -22,13 +27,13 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
     }
 
     const payload = {
-      amount: amount * 100,
+      amount: amount,
       precision: 100,
       reference: `txn_${Date.now()}`,
       description: description || "Deposit to main wallet",
       currency: "USD",
       source: "@WorldUSD",
-      destination: "bln_cd182069-a1a6-4305-b2e8-d1949da22bdb",
+      destination: mainWalletId,
       skip_queue: true,
       allow_overdraft: true,
       meta_data: {
@@ -39,6 +44,9 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
 
     recordTransaction.mutate(payload, {
       onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: QUERYKEYS.getWalletBalance(mainWalletId),
+        });
         toast.success("Deposit successful! 🎉");
         onClose();
       },

@@ -1,14 +1,18 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   BanknotesIcon,
   ArrowDownIcon,
   ArrowUpIcon,
 } from "@heroicons/react/24/solid";
-import { useState, useEffect } from "react";
-import { useSearchTransactions } from "@/services/mutations";
-import { format } from "date-fns";
+import { useState } from "react";
 
-const MAIN_WALLET_ID = "bln_cd182069-a1a6-4305-b2e8-d1949da22bdb";
-const CARD_WALLET_ID = "bln_5a409804-08eb-43c9-bb7b-3d56a1c50f8e";
+import { format } from "date-fns";
+import api from "@/lib/axios";
+import { useQuery } from "@tanstack/react-query";
+import QUERYKEYS from "@/lib/queryKeys";
+import { useUser } from "@/contexts/UserContext";
+
+
 
 export interface Transaction {
   id: string;
@@ -36,49 +40,63 @@ export interface SearchResponse {
 
 export default function TransactionHistory() {
   const [selectedWallet, setSelectedWallet] = useState<"main" | "card">("main");
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
-
-  const searchTransactions = useSearchTransactions();
-
-  useEffect(() => {
-    const walletId =
-      selectedWallet === "main" ? MAIN_WALLET_ID : CARD_WALLET_ID;
-    searchTransactions.mutate(
-      {
-        q: walletId,
-        query_by: "source",
+  const { mainWalletId, cardWalletId } = useUser();
+  const walletId = selectedWallet === "main" ? mainWalletId : cardWalletId;
+  const { data: transactions = [], isPending } = useQuery<Transaction[], Error>(
+    {
+      queryKey: QUERYKEYS.getWalletTransactions(selectedWallet),
+      queryFn: async () => {
+        const response = await api.post("/search/transactions", {
+          q: walletId,
+          query_by: "source",
+        });
+        return response.data.hits.map((hit: any) => hit.document);
       },
-      {
-        onSuccess: (response) => {
-          const transactionList = response.data.hits.map(
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            (hit: any) => hit.document
-          );
-          setTransactions(transactionList);
-        },
-        onError: (error) => {
-          console.error("Failed to fetch transactions:", error);
-        },
-      }
-    );
-  }, [selectedWallet]);
+    }
+  );
+
+  // const searchTransactions = useSearchTransactions();
+
+  // const refreshTransactions = useCallback(() => {
+  //   const walletId =
+  //     selectedWallet === "main" ? MAIN_WALLET_ID : CARD_WALLET_ID;
+  //   searchTransactions.mutate(
+  //     {
+  //       q: walletId,
+  //       query_by: "source",
+  //     },
+  //     {
+  //       onSuccess: (response) => {
+  //         const transactionList = response.data.hits.map(
+  //           (hit: any) => hit.document
+  //         );
+  //         setTransactions(transactionList);
+  //       },
+  //       onError: (error) => {
+  //         console.error("Failed to fetch transactions:", error);
+  //       },
+  //     }
+  //   );
+  // }, [selectedWallet, searchTransactions]);
+  // useEffect(() => {
+  //   refreshTransactions();
+  // }, [refreshTransactions]);
 
   const getTransactionIcon = (status: string, destination: string) => {
-    if (destination === CARD_WALLET_ID) {
+    if (destination === cardWalletId) {
       return <ArrowDownIcon className="h-5 w-5 text-purple-500" />;
     }
-    if (destination === "@WorldUSD") {
-      return <ArrowUpIcon className="h-5 w-5 text-red-500" />;
+    if (destination === mainWalletId) {
+      return <BanknotesIcon className="h-5 w-5 text-green-500" />;
     }
-    return <BanknotesIcon className="h-5 w-5 text-green-500" />;
+    return <ArrowUpIcon className="h-5 w-5 text-red-500" />;
   };
 
   const getTransactionType = (status: string, destination: string) => {
-    if (destination === CARD_WALLET_ID) return "Transfer";
-    if (destination === "@WorldUSD") return "Withdraw";
-    return "Deposit";
+    if (destination === cardWalletId) return "Transfer";
+    if (destination === mainWalletId) return "Deposit";
+    return "Withdraw";
   };
-
   return (
     <div className="p-6 shadow-lg rounded-xl bg-white dark:bg-gray-800 dark:text-white">
       <div className="flex justify-between items-center mb-4">
@@ -107,7 +125,7 @@ export default function TransactionHistory() {
         </div>
       </div>
 
-      {searchTransactions.isPending ? (
+      {isPending ? (
         <div className="flex justify-center py-4">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500" />
         </div>
@@ -133,7 +151,7 @@ export default function TransactionHistory() {
                       transaction.status,
                       transaction.destination
                     )}
-                    : ${(transaction.amount / 100).toFixed(2)}
+                    : ${transaction.amount.toFixed(2)}
                   </span>
                   <span className="text-xs text-gray-500 dark:text-gray-400">
                     {transaction.description}
@@ -144,7 +162,10 @@ export default function TransactionHistory() {
                 </div>
               </div>
               <span className="text-xs text-gray-500 dark:text-gray-400">
-                {format(new Date(transaction.created_at), "MMM dd, yyyy HH:mm")}
+                {format(
+                  new Date(parseInt(transaction.created_at, 10) * 1000),
+                  "MMM dd, yyyy HH:mm"
+                )}
               </span>
             </li>
           ))}
