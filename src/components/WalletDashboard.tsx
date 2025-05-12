@@ -7,10 +7,13 @@ import TransferForm from "./TransferToCard/TransferForm";
 import TransactionHistory from "./TransactionHistory";
 import { useWalletBalance } from "@/services/queries";
 import { useUser } from "@/contexts/UserContext";
-import { UserIcon } from "@heroicons/react/24/outline";
+import {
+  UserIcon,
+  ArrowRightOnRectangleIcon,
+} from "@heroicons/react/24/outline";
 
 export default function WalletDashboard() {
-  const { mainWalletId, cardWalletId, firstName, lastName } = useUser();
+  const { mainWalletId, cardWalletId, firstName, lastName, logout } = useUser();
 
   const { data: mainBalance } = useWalletBalance(mainWalletId);
   const { data: cardBalance } = useWalletBalance(cardWalletId);
@@ -19,18 +22,26 @@ export default function WalletDashboard() {
     <div
       className={`p-6 space-y-6 h-screen overflow-y-auto shadow-lg rounded-xl bg-gray-800`}
     >
-
       <div className="bg-gradient-to-r from-gray-900 to-gray-700 border-l-4 border-purple-400 p-4 sm:p-6 rounded-xl shadow-md mb-6">
-        <div className="flex items-center">
-          <div className="bg-purple-400 bg-opacity-25 p-2 rounded-full">
-            <UserIcon className="h-8 w-8 text-purple-300" />
+        <div className="flex items-center justify-between">
+          <div className="flex items-center">
+            <div className="bg-purple-400 bg-opacity-25 p-2 rounded-full">
+              <UserIcon className="h-8 w-8 text-purple-300" />
+            </div>
+            <div className="ml-4">
+              <p className="text-gray-400 text-sm">Welcome back,</p>
+              <h2 className="text-gray-200 text-xl sm:text-2xl font-bold">
+                {firstName} {lastName}
+              </h2>
+            </div>
           </div>
-          <div className="ml-4">
-            <p className="text-gray-400 text-sm">Welcome back,</p>
-            <h2 className="text-gray-200 text-xl sm:text-2xl font-bold">
-              {firstName} {lastName}
-            </h2>
-          </div>
+          <button
+            onClick={logout}
+            className="px-4 py-2 rounded-lg bg-gray-700 hover:bg-gray-600 text-gray-300 hover:text-white flex items-center transition-colors"
+          >
+            <span className="mr-2 hidden sm:inline">Logout</span>
+            <ArrowRightOnRectangleIcon className="h-5 w-5" />
+          </button>
         </div>
       </div>
 
