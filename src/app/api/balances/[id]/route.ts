@@ -3,11 +3,20 @@ import axios from "axios";
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string | null } }
+  { params }: { params: { id: string } }
 ) {
   try {
+    const balanceId = params.id;
+    
+    if (!balanceId) {
+      return NextResponse.json(
+        { error: "Balance ID is required" },
+        { status: 400 }
+      );
+    }
+
     const response = await axios.get(
-      `https://sandbox-0.blnkfinance.com/balances/${params.id}`,
+      `https://sandbox-0.blnkfinance.com/balances/${balanceId}`,
       {
         headers: {
           "Content-Type": "application/json",
