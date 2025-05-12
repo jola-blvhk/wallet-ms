@@ -15,8 +15,18 @@ export async function POST(request: Request) {
 
     const ledgerId =
       walletType === "main"
-        ? "ldg_890570ab-132a-40ea-9e68-04638595b6de" // Main wallet ledger ID
-        : "ldg_ee91f684-e566-41b2-b3e6-9aa6b4e68398"; // Card wallet ledger ID
+        ? process.env.MAIN_WALLET_LEDGER_ID // Main wallet ledger ID from env
+        : process.env.CARD_WALLET_LEDGER_ID; // Card wallet ledger ID from env
+
+    if (!ledgerId) {
+      console.error(
+        `Missing environment variable for ${walletType} wallet ledger ID`
+      );
+      return NextResponse.json(
+        { error: "Server configuration error" },
+        { status: 500 }
+      );
+    }
 
     const payload = {
       ledger_id: ledgerId,

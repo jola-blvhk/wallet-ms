@@ -25,6 +25,7 @@ export default function LoginForm({
   const fetchUserMutation = useMutation({
     mutationFn: (id: string) => api.get(`/identities/${id}`),
     onSuccess: (response) => {
+      console.log(response.data)
       const userData = response.data;
       completeLogin(userData);
     },
@@ -98,7 +99,7 @@ export default function LoginForm({
 
       <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
         <div>
-          <label className="block text-sm font-medium mb-1 dark:text-white flex items-center">
+          <label className="block text-sm font-medium mb-1 dark:text-white  items-center">
             <IdentificationIcon className="h-4 w-4 sm:h-5 sm:w-5 mr-2 text-blue-500" />
             Identity ID
           </label>
