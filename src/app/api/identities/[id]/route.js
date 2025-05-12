@@ -1,12 +1,9 @@
-// @ts-nocheck
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import axios from "axios";
 
 export async function GET(
-  req: NextRequest,
-  context: { params: { id: string } }
+  req,
+  context
 ) {
   try {
     const identityId = context.params.id;
@@ -30,7 +27,7 @@ export async function GET(
 
     // Return the identity data
     return NextResponse.json(response.data);
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error fetching identity:", error);
 
     // Handle different error types
