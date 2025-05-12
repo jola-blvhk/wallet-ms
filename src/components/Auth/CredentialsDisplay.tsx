@@ -22,7 +22,7 @@ export default function CredentialsDisplay({
     setTimeout(() => setCopiedId(null), 2000);
   };
 
-  // Create formatted text for downloading all credentials
+
   const allCredentials = `
     WALLET CREDENTIALS - IMPORTANT, PLEASE SAVE
     ----------------------------------------
@@ -34,7 +34,7 @@ export default function CredentialsDisplay({
     Keep this information secure. You'll need it to log in.
   `;
 
-  // Create download link for credentials
+
   const downloadCredentials = () => {
     const blob = new Blob([allCredentials], { type: "text/plain" });
     const href = URL.createObjectURL(blob);
@@ -48,14 +48,14 @@ export default function CredentialsDisplay({
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg max-w-md w-full">
-      <div className="text-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+    <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 md:p-8 rounded-xl shadow-lg max-w-md w-full">
+      <div className="text-center mb-4 sm:mb-6">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
           Account Created!
         </h2>
         <div className="mt-2 flex items-center justify-center">
           <div className="bg-green-100 dark:bg-green-900 p-2 rounded-full">
-            <CheckIcon className="h-6 w-6 text-green-600 dark:text-green-300" />
+            <CheckIcon className="h-5 w-5 sm:h-6 sm:w-6 text-green-600 dark:text-green-300" />
           </div>
         </div>
         <p className="mt-4 text-gray-600 dark:text-gray-400">

@@ -277,12 +277,12 @@ export default function SignupForm({
   };
 
   // Styling
-  const bgColor = "bg-blue-50 dark:bg-gray-900";
+  const bgColor = "bg-blue-50 dark:bg-gray-900"; // Light blue background for light mode
   const inputStyle =
-    "w-full text-sm border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white";
+    "w-full text-sm border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none bg-white dark:bg-gray-800 dark:border-gray-700 text-gray-800 dark:text-white";
   const labelStyle =
     "block text-sm font-medium mb-1.5 text-gray-700 dark:text-gray-300";
-  const iconStyle = "w-4 h-4 mr-2 text-blue-500 dark:text-blue-400";
+  const iconStyle = "w-4 h-4 mr-2 text-blue-600 dark:text-blue-400";
   const buttonStyle =
     "bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg transition-all duration-200";
 
@@ -304,9 +304,9 @@ export default function SignupForm({
     <div
       className={`${bgColor} min-h-screen flex flex-col justify-center items-center px-2 `}
     >
-      <div className="bg-gray-800 p-8 rounded-xl shadow-lg w-full max-w-5xl">
+      <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg w-full max-w-5xl">
         <div className="text-center mb-8">
-          <h2 className="text-xl md:text-2xl font-bold text-white mb-2">
+          <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-2">
             Create Your Wallet Account
           </h2>
           <p className="text-gray-600 dark:text-gray-400">
@@ -416,7 +416,7 @@ export default function SignupForm({
                   required
                 />
               </div>
-           
+
               <div>
                 <label className={labelStyle}>
                   <div className="flex items-center">
