@@ -3,7 +3,7 @@ import api from "@/lib/axios";
 import QUERYKEYS from "@/lib/queryKeys";
 import endpoints from "@/lib/endpoints";
 
-export const useWalletBalance = (balanceId: string) => {
+export const useWalletBalance = (balanceId: string | null) => {
   return useQuery({
     queryKey: QUERYKEYS.getWalletBalance(balanceId),
     queryFn: async () => {
