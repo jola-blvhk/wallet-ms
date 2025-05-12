@@ -12,8 +12,6 @@ import { useEffect, useState } from "react";
 import {
   UserIcon,
   ArrowRightOnRectangleIcon,
-  SunIcon,
-  MoonIcon,
 } from "@heroicons/react/24/outline";
 
 export default function WalletDashboard() {
@@ -21,7 +19,6 @@ export default function WalletDashboard() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  // Use this to avoid hydration mismatch
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -30,12 +27,13 @@ export default function WalletDashboard() {
   const { data: cardBalance } = useWalletBalance(cardWalletId);
 
   // Handle theme toggle
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
+  // const toggleTheme = () => {
+  //   console.log("Current theme:", theme);
+  //   const newTheme = theme === "dark" ? "light" : "dark";
+  //   console.log("Setting theme to:", newTheme);
+  //   setTheme(newTheme);
+  // };
 
-  // Don't render UI with theme-dependent styles until mounted
-  // This prevents hydration mismatch
   if (!mounted)
     return <div className="h-screen bg-gray-50 dark:bg-gray-800"></div>;
 
@@ -60,7 +58,7 @@ export default function WalletDashboard() {
             </div>
           </div>
           <div className="flex items-center space-x-3">
-            <button
+            {/* <button
               onClick={toggleTheme}
               className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 
                 text-gray-700 dark:text-gray-300"
@@ -75,7 +73,7 @@ export default function WalletDashboard() {
               ) : (
                 <MoonIcon className="h-5 w-5" />
               )}
-            </button>
+            </button> */}
             <button
               onClick={logout}
               className="px-4 py-2 rounded-lg flex items-center transition-colors
