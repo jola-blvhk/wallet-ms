@@ -20,6 +20,7 @@ export default function TransferModal({
   const queryClient = useQueryClient();
   const [amount, setAmount] = useState<number>(0);
   const [description, setDescription] = useState<string>("");
+  const { currencySymbol, currencyPrecision, currencyCode } = useUser();
 
 
   const { mainWalletId, cardWalletId } = useUser();
@@ -40,7 +41,7 @@ export default function TransferModal({
 
     const payload = {
       amount: amount,
-      precision: 100,
+      precision: currencyPrecision ?? 100,
       reference: `txn_${Date.now()}`,
       description: description || "Transfer to card wallet",
       currency: "USD",
@@ -86,7 +87,7 @@ export default function TransferModal({
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium dark:text-white">
-                Amount (USD)
+                Amount ({currencyCode})
               </label>
               <input
                 type="number"
@@ -94,12 +95,12 @@ export default function TransferModal({
                 onChange={(e) => setAmount(Number(e.target.value))}
                 className="w-full border p-2 rounded-md dark:bg-gray-700 dark:text-white mt-1"
                 min="0"
-                max={(balance / 100).toFixed(2)}
+                max={(balance / (currencyPrecision ?? 100)).toFixed(2)}
                 step="0.01"
                 required
               />
               <span className="text-sm text-gray-500 dark:text-gray-400">
-                Available balance: ${(balance / 100).toFixed(2)}
+                Available balance: {currencySymbol}{(balance / (currencyPrecision ?? 100)).toFixed(2)}
               </span>
             </div>
             <div>

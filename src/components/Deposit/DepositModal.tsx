@@ -14,6 +14,7 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
   const queryClient = useQueryClient();
   const [amount, setAmount] = useState<number>(0);
   const [description, setDescription] = useState<string>("");
+  const {currencyCode} = useUser();
 
   const { mainWalletId } = useUser();
   const recordTransaction = useRecordTransaction();
@@ -31,8 +32,8 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
       precision: 100,
       reference: `txn_${Date.now()}`,
       description: description || "Deposit to main wallet",
-      currency: "USD",
-      source: "@WorldUSD",
+      currency: currencyCode || "$",
+      source: `@World${currencyCode}`,
       destination: mainWalletId,
       skip_queue: true,
       allow_overdraft: true,
@@ -69,7 +70,7 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium dark:text-white">
-                Amount (USD)
+                Amount ({currencyCode})
               </label>
               <input
                 type="number"

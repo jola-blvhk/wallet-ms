@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ArrowDownIcon } from "@heroicons/react/24/solid";
 import TransferModal from "./TransferModal";
+import { useUser } from "@/contexts/UserContext";
 
 interface TransferFormProps {
   balance: number;
@@ -8,6 +9,7 @@ interface TransferFormProps {
 
 export default function TransferForm({ balance = 0 }: TransferFormProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+   const {currencySymbol, currencyCode, currencyPrecision} = useUser()
 
   return (
     <>
@@ -36,7 +38,7 @@ export default function TransferForm({ balance = 0 }: TransferFormProps) {
                 Transfer to Card
               </h3>
               <p className="text-sm text-left text-gray-500 dark:text-gray-400">
-                Available: ${(balance / 100).toFixed(2)}
+                Available: {currencySymbol}{(balance / (currencyPrecision ?? 100)).toFixed(2)}
               </p>
             </div>
           </div>

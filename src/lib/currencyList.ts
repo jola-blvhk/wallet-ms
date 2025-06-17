@@ -1,8 +1,18 @@
-export const countryCurrencyList = [
+interface CountryCurrency {
+  country: string;
+  currencyName: string;
+  currencyCode: string;
+  currencySymbol: string;
+  precision: number;
+  iso2: string;
+}
+
+export const countryCurrencyList: CountryCurrency[] = [
   {
     "country": "Albania",
     "currencyName": "Lek",
     "currencyCode": "ALL",
+    "currencySymbol": "L",
     "precision": 100,
     "iso2": "AL"
   },
@@ -10,6 +20,7 @@ export const countryCurrencyList = [
     "country": "Algeria",
     "currencyName": "Algerian Dinar",
     "currencyCode": "DZD",
+    "currencySymbol": "د.ج",
     "precision": 100,
     "iso2": "DZ"
   },
@@ -17,6 +28,7 @@ export const countryCurrencyList = [
     "country": "Argentina",
     "currencyName": "Argentine Peso",
     "currencyCode": "ARS",
+    "currencySymbol": "$",
     "precision": 100,
     "iso2": "AR"
   },
@@ -24,6 +36,7 @@ export const countryCurrencyList = [
     "country": "Armenia",
     "currencyName": "Armenian Dram",
     "currencyCode": "AMD",
+    "currencySymbol": "֏",
     "precision": 100,
     "iso2": "AM"
   },
@@ -31,6 +44,7 @@ export const countryCurrencyList = [
     "country": "Aruba",
     "currencyName": "Aruban Florin",
     "currencyCode": "AWG",
+    "currencySymbol": "ƒ",
     "precision": 100,
     "iso2": "AW"
   },
@@ -38,6 +52,7 @@ export const countryCurrencyList = [
     "country": "Australia",
     "currencyName": "Australian Dollar",
     "currencyCode": "AUD",
+    "currencySymbol": "$",
     "precision": 100,
     "iso2": "AU"
   },
@@ -45,6 +60,7 @@ export const countryCurrencyList = [
     "country": "Bahamas",
     "currencyName": "Bahamian Dollar",
     "currencyCode": "BSD",
+    "currencySymbol": "$",
     "precision": 100,
     "iso2": "BS"
   },
@@ -52,6 +68,7 @@ export const countryCurrencyList = [
     "country": "Bahrain",
     "currencyName": "Bahraini Dinar",
     "currencyCode": "BHD",
+    "currencySymbol": ".د.ب",
     "precision": 100,
     "iso2": "BH"
   },
@@ -59,6 +76,7 @@ export const countryCurrencyList = [
     "country": "Bangladesh",
     "currencyName": "Taka",
     "currencyCode": "BDT",
+    "currencySymbol": "৳",
     "precision": 100,
     "iso2": "BD"
   },
@@ -66,6 +84,7 @@ export const countryCurrencyList = [
     "country": "Barbados",
     "currencyName": "Barbados Dollar",
     "currencyCode": "BBD",
+    "currencySymbol": "$",
     "precision": 100,
     "iso2": "BB"
   },
@@ -73,6 +92,7 @@ export const countryCurrencyList = [
     "country": "Belize",
     "currencyName": "Belize Dollar",
     "currencyCode": "BZD",
+    "currencySymbol": "$",
     "precision": 100,
     "iso2": "BZ"
   },
@@ -80,6 +100,7 @@ export const countryCurrencyList = [
     "country": "Bermuda",
     "currencyName": "Bermudian Dollar",
     "currencyCode": "BMD",
+    "currencySymbol": "$",
     "precision": 100,
     "iso2": "BM"
   },
@@ -87,6 +108,7 @@ export const countryCurrencyList = [
     "country": "Bhutan",
     "currencyName": "Ngultrum",
     "currencyCode": "BTN",
+    "currencySymbol": "Nu.",
     "precision": 100,
     "iso2": "BT"
   },
@@ -94,6 +116,7 @@ export const countryCurrencyList = [
     "country": "Bolivia, Plurinational State of",
     "currencyName": "Boliviano",
     "currencyCode": "BOB",
+    "currencySymbol": "Bs.",
     "precision": 100,
     "iso2": "BO"
   },
@@ -101,6 +124,7 @@ export const countryCurrencyList = [
     "country": "Botswana",
     "currencyName": "Pula",
     "currencyCode": "BWP",
+    "currencySymbol": "P",
     "precision": 100,
     "iso2": "BW"
   },
@@ -108,6 +132,7 @@ export const countryCurrencyList = [
     "country": "Brunei Darussalam",
     "currencyName": "Brunei Dollar",
     "currencyCode": "BND",
+    "currencySymbol": "$",
     "precision": 100,
     "iso2": "BN"
   },
@@ -115,6 +140,7 @@ export const countryCurrencyList = [
     "country": "Burundi",
     "currencyName": "Burundi Franc",
     "currencyCode": "BIF",
+    "currencySymbol": "FBu",
     "precision": 100,
     "iso2": "BI"
   },
@@ -122,6 +148,7 @@ export const countryCurrencyList = [
     "country": "Cabo Verde",
     "currencyName": "Cabo Verde Escudo",
     "currencyCode": "CVE",
+    "currencySymbol": "Esc",
     "precision": 100,
     "iso2": "CV"
   },
@@ -129,6 +156,7 @@ export const countryCurrencyList = [
     "country": "Cambodia",
     "currencyName": "Riel",
     "currencyCode": "KHR",
+    "currencySymbol": "៛",
     "precision": 100,
     "iso2": "KH"
   },
@@ -136,6 +164,7 @@ export const countryCurrencyList = [
     "country": "Canada",
     "currencyName": "Canadian Dollar",
     "currencyCode": "CAD",
+    "currencySymbol": "$",
     "precision": 100,
     "iso2": "CA"
   },
@@ -143,6 +172,7 @@ export const countryCurrencyList = [
     "country": "Cayman Islands",
     "currencyName": "Cayman Islands Dollar",
     "currencyCode": "KYD",
+    "currencySymbol": "$",
     "precision": 100,
     "iso2": "KY"
   },
@@ -150,6 +180,7 @@ export const countryCurrencyList = [
     "country": "Chile",
     "currencyName": "Chilean Peso",
     "currencyCode": "CLP",
+    "currencySymbol": "$",
     "precision": 100,
     "iso2": "CL"
   },
@@ -157,6 +188,7 @@ export const countryCurrencyList = [
     "country": "China",
     "currencyName": "Yuan Renminbi",
     "currencyCode": "CNY",
+    "currencySymbol": "¥",
     "precision": 100,
     "iso2": "CN"
   },
@@ -164,6 +196,7 @@ export const countryCurrencyList = [
     "country": "Colombia",
     "currencyName": "Colombian Peso",
     "currencyCode": "COP",
+    "currencySymbol": "$",
     "precision": 100,
     "iso2": "CO"
   },
@@ -171,6 +204,7 @@ export const countryCurrencyList = [
     "country": "Comoros",
     "currencyName": "Comoro Franc",
     "currencyCode": "KMF",
+    "currencySymbol": "CF",
     "precision": 100,
     "iso2": "KM"
   },
@@ -178,6 +212,7 @@ export const countryCurrencyList = [
     "country": "Costa Rica",
     "currencyName": "Costa Rican Colon",
     "currencyCode": "CRC",
+    "currencySymbol": "₡",
     "precision": 100,
     "iso2": "CR"
   },
@@ -185,6 +220,7 @@ export const countryCurrencyList = [
     "country": "Croatia",
     "currencyName": "Kuna",
     "currencyCode": "HRK",
+    "currencySymbol": "kn",
     "precision": 100,
     "iso2": "HR"
   },
@@ -192,6 +228,7 @@ export const countryCurrencyList = [
     "country": "Cuba",
     "currencyName": "Cuban Peso",
     "currencyCode": "CUP",
+    "currencySymbol": "$",
     "precision": 100,
     "iso2": "CU"
   },
@@ -199,6 +236,7 @@ export const countryCurrencyList = [
     "country": "Czechia",
     "currencyName": "Czech Koruna",
     "currencyCode": "CZK",
+    "currencySymbol": "Kč",
     "precision": 100,
     "iso2": "CZ"
   },
@@ -206,6 +244,7 @@ export const countryCurrencyList = [
     "country": "Denmark",
     "currencyName": "Danish Krone",
     "currencyCode": "DKK",
+    "currencySymbol": "kr",
     "precision": 100,
     "iso2": "DK"
   },
@@ -213,6 +252,7 @@ export const countryCurrencyList = [
     "country": "Djibouti",
     "currencyName": "Djibouti Franc",
     "currencyCode": "DJF",
+    "currencySymbol": "Fdj",
     "precision": 100,
     "iso2": "DJ"
   },
@@ -220,6 +260,7 @@ export const countryCurrencyList = [
     "country": "Dominican Republic",
     "currencyName": "Dominican Peso",
     "currencyCode": "DOP",
+    "currencySymbol": "$",
     "precision": 100,
     "iso2": "DO"
   },
@@ -227,6 +268,7 @@ export const countryCurrencyList = [
     "country": "Egypt",
     "currencyName": "Egyptian Pound",
     "currencyCode": "EGP",
+    "currencySymbol": "£",
     "precision": 100,
     "iso2": "EG"
   },
@@ -234,6 +276,7 @@ export const countryCurrencyList = [
     "country": "El Salvador",
     "currencyName": "El Salvador Colon",
     "currencyCode": "SVC",
+    "currencySymbol": "₡",
     "precision": 100,
     "iso2": "SV"
   },
@@ -241,6 +284,7 @@ export const countryCurrencyList = [
     "country": "Eritrea",
     "currencyName": "Nakfa",
     "currencyCode": "ERN",
+    "currencySymbol": "Nfk",
     "precision": 100,
     "iso2": "ER"
   },
@@ -248,6 +292,7 @@ export const countryCurrencyList = [
     "country": "Eswatini",
     "currencyName": "Lilangeni",
     "currencyCode": "SZL",
+    "currencySymbol": "L",
     "precision": 100,
     "iso2": "SZ"
   },
@@ -255,6 +300,7 @@ export const countryCurrencyList = [
     "country": "Falkland Islands (Malvinas)",
     "currencyName": "Falkland Islands Pound",
     "currencyCode": "FKP",
+    "currencySymbol": "£",
     "precision": 100,
     "iso2": "FK"
   },
@@ -262,6 +308,7 @@ export const countryCurrencyList = [
     "country": "Fiji",
     "currencyName": "Fiji Dollar",
     "currencyCode": "FJD",
+    "currencySymbol": "$",
     "precision": 100,
     "iso2": "FJ"
   },
@@ -269,6 +316,7 @@ export const countryCurrencyList = [
     "country": "Gambia",
     "currencyName": "Dalasi",
     "currencyCode": "GMD",
+    "currencySymbol": "D",
     "precision": 100,
     "iso2": "GM"
   },
@@ -276,6 +324,7 @@ export const countryCurrencyList = [
     "country": "Gibraltar",
     "currencyName": "Gibraltar Pound",
     "currencyCode": "GIP",
+    "currencySymbol": "£",
     "precision": 100,
     "iso2": "GI"
   },
@@ -283,6 +332,7 @@ export const countryCurrencyList = [
     "country": "Guatemala",
     "currencyName": "Quetzal",
     "currencyCode": "GTQ",
+    "currencySymbol": "Q",
     "precision": 100,
     "iso2": "GT"
   },
@@ -290,6 +340,7 @@ export const countryCurrencyList = [
     "country": "Guinea",
     "currencyName": "Guinea Franc",
     "currencyCode": "GNF",
+    "currencySymbol": "FG",
     "precision": 100,
     "iso2": "GN"
   },
@@ -297,6 +348,7 @@ export const countryCurrencyList = [
     "country": "Guyana",
     "currencyName": "Guyana Dollar",
     "currencyCode": "GYD",
+    "currencySymbol": "$",
     "precision": 100,
     "iso2": "GY"
   },
@@ -304,6 +356,7 @@ export const countryCurrencyList = [
     "country": "Haiti",
     "currencyName": "Gourde",
     "currencyCode": "HTG",
+    "currencySymbol": "G",
     "precision": 100,
     "iso2": "HT"
   },
@@ -311,6 +364,7 @@ export const countryCurrencyList = [
     "country": "Honduras",
     "currencyName": "Lempira",
     "currencyCode": "HNL",
+    "currencySymbol": "L",
     "precision": 100,
     "iso2": "HN"
   },
@@ -318,6 +372,7 @@ export const countryCurrencyList = [
     "country": "Hong Kong",
     "currencyName": "Hong Kong Dollar",
     "currencyCode": "HKD",
+    "currencySymbol": "$",
     "precision": 100,
     "iso2": "HK"
   },
@@ -325,6 +380,7 @@ export const countryCurrencyList = [
     "country": "Hungary",
     "currencyName": "Forint",
     "currencyCode": "HUF",
+    "currencySymbol": "Ft",
     "precision": 100,
     "iso2": "HU"
   },
@@ -332,6 +388,7 @@ export const countryCurrencyList = [
     "country": "Iceland",
     "currencyName": "Iceland Krona",
     "currencyCode": "ISK",
+    "currencySymbol": "kr",
     "precision": 100,
     "iso2": "IS"
   },
@@ -339,6 +396,7 @@ export const countryCurrencyList = [
     "country": "India",
     "currencyName": "Indian Rupee",
     "currencyCode": "INR",
+    "currencySymbol": "₹",
     "precision": 100,
     "iso2": "IN"
   },
@@ -346,6 +404,7 @@ export const countryCurrencyList = [
     "country": "Indonesia",
     "currencyName": "Rupiah",
     "currencyCode": "IDR",
+    "currencySymbol": "Rp",
     "precision": 100,
     "iso2": "ID"
   },
@@ -353,6 +412,7 @@ export const countryCurrencyList = [
     "country": "Iran, Islamic Republic of",
     "currencyName": "Iranian Rial",
     "currencyCode": "IRR",
+    "currencySymbol": "﷼",
     "precision": 100,
     "iso2": "IR"
   },
@@ -360,6 +420,7 @@ export const countryCurrencyList = [
     "country": "Iraq",
     "currencyName": "Iraqi Dinar",
     "currencyCode": "IQD",
+    "currencySymbol": "ع.د",
     "precision": 100,
     "iso2": "IQ"
   },
@@ -367,6 +428,7 @@ export const countryCurrencyList = [
     "country": "Israel",
     "currencyName": "New Israeli Sheqel",
     "currencyCode": "ILS",
+    "currencySymbol": "₪",
     "precision": 100,
     "iso2": "IL"
   },
@@ -374,6 +436,7 @@ export const countryCurrencyList = [
     "country": "Jamaica",
     "currencyName": "Jamaican Dollar",
     "currencyCode": "JMD",
+    "currencySymbol": "J$",
     "precision": 100,
     "iso2": "JM"
   },
@@ -381,6 +444,7 @@ export const countryCurrencyList = [
     "country": "Japan",
     "currencyName": "Yen",
     "currencyCode": "JPY",
+    "currencySymbol": "¥",
     "precision": 100,
     "iso2": "JP"
   },
@@ -388,6 +452,7 @@ export const countryCurrencyList = [
     "country": "Jordan",
     "currencyName": "Jordanian Dinar",
     "currencyCode": "JOD",
+    "currencySymbol": "د.أ",
     "precision": 100,
     "iso2": "JO"
   },
@@ -395,6 +460,7 @@ export const countryCurrencyList = [
     "country": "Kazakhstan",
     "currencyName": "Tenge",
     "currencyCode": "KZT",
+    "currencySymbol": "лв",
     "precision": 100,
     "iso2": "KZ"
   },
@@ -402,6 +468,7 @@ export const countryCurrencyList = [
     "country": "Kenya",
     "currencyName": "Kenyan Shilling",
     "currencyCode": "KES",
+    "currencySymbol": "KSh",
     "precision": 100,
     "iso2": "KE"
   },
@@ -409,6 +476,7 @@ export const countryCurrencyList = [
     "country": "Korea, Democratic People's Republic of",
     "currencyName": "North Korean Won",
     "currencyCode": "KPW",
+    "currencySymbol": "₩",
     "precision": 100,
     "iso2": "KP"
   },
@@ -416,6 +484,7 @@ export const countryCurrencyList = [
     "country": "Korea, Republic of",
     "currencyName": "Won",
     "currencyCode": "KRW",
+    "currencySymbol": "₩",
     "precision": 100,
     "iso2": "KR"
   },
@@ -423,6 +492,7 @@ export const countryCurrencyList = [
     "country": "Kuwait",
     "currencyName": "Kuwaiti Dinar",
     "currencyCode": "KWD",
+    "currencySymbol": "د.ك",
     "precision": 100,
     "iso2": "KW"
   },
@@ -430,6 +500,7 @@ export const countryCurrencyList = [
     "country": "Kyrgyzstan",
     "currencyName": "Som",
     "currencyCode": "KGS",
+    "currencySymbol": "лв",
     "precision": 100,
     "iso2": "KG"
   },
@@ -437,6 +508,7 @@ export const countryCurrencyList = [
     "country": "Lao People's Democratic Republic",
     "currencyName": "Kip",
     "currencyCode": "LAK",
+    "currencySymbol": "₭",
     "precision": 100,
     "iso2": "LA"
   },
@@ -444,6 +516,7 @@ export const countryCurrencyList = [
     "country": "Lebanon",
     "currencyName": "Lebanese Pound",
     "currencyCode": "LBP",
+    "currencySymbol": "ل.ل",
     "precision": 100,
     "iso2": "LB"
   },
@@ -451,6 +524,7 @@ export const countryCurrencyList = [
     "country": "Lesotho",
     "currencyName": "Loti",
     "currencyCode": "LSL",
+    "currencySymbol": "L",
     "precision": 100,
     "iso2": "LS"
   },
@@ -458,6 +532,7 @@ export const countryCurrencyList = [
     "country": "Liberia",
     "currencyName": "Liberian Dollar",
     "currencyCode": "LRD",
+    "currencySymbol": "$",
     "precision": 100,
     "iso2": "LR"
   },
@@ -465,6 +540,7 @@ export const countryCurrencyList = [
     "country": "Libya",
     "currencyName": "Libyan Dinar",
     "currencyCode": "LYD",
+    "currencySymbol": "ل.د",
     "precision": 100,
     "iso2": "LY"
   },
@@ -472,6 +548,7 @@ export const countryCurrencyList = [
     "country": "Macao",
     "currencyName": "Pataca",
     "currencyCode": "MOP",
+    "currencySymbol": "P",
     "precision": 100,
     "iso2": "MO"
   },
@@ -479,6 +556,7 @@ export const countryCurrencyList = [
     "country": "Malawi",
     "currencyName": "Malawi Kwacha",
     "currencyCode": "MWK",
+    "currencySymbol": "MK",
     "precision": 100,
     "iso2": "MW"
   },
@@ -486,6 +564,7 @@ export const countryCurrencyList = [
     "country": "Malaysia",
     "currencyName": "Malaysian Ringgit",
     "currencyCode": "MYR",
+    "currencySymbol": "RM",
     "precision": 100,
     "iso2": "MY"
   },
@@ -493,6 +572,7 @@ export const countryCurrencyList = [
     "country": "Maldives",
     "currencyName": "Rufiyaa",
     "currencyCode": "MVR",
+    "currencySymbol": "Rf",
     "precision": 100,
     "iso2": "MV"
   },
@@ -500,6 +580,7 @@ export const countryCurrencyList = [
     "country": "Mauritania",
     "currencyName": "Ouguiya",
     "currencyCode": "MRO",
+    "currencySymbol": "UM",
     "precision": 100,
     "iso2": "MR"
   },
@@ -507,6 +588,7 @@ export const countryCurrencyList = [
     "country": "Mauritius",
     "currencyName": "Mauritius Rupee",
     "currencyCode": "MUR",
+    "currencySymbol": "₨",
     "precision": 100,
     "iso2": "MU"
   },
@@ -514,6 +596,7 @@ export const countryCurrencyList = [
     "country": "Mexico",
     "currencyName": "Mexican Peso",
     "currencyCode": "MXN",
+    "currencySymbol": "$",
     "precision": 100,
     "iso2": "MX"
   },
@@ -521,6 +604,7 @@ export const countryCurrencyList = [
     "country": "Moldova, Republic of",
     "currencyName": "Moldovan Leu",
     "currencyCode": "MDL",
+    "currencySymbol": "L",
     "precision": 100,
     "iso2": "MD"
   },
@@ -528,6 +612,7 @@ export const countryCurrencyList = [
     "country": "Mongolia",
     "currencyName": "Tugrik",
     "currencyCode": "MNT",
+    "currencySymbol": "₮",
     "precision": 100,
     "iso2": "MN"
   },
@@ -535,6 +620,7 @@ export const countryCurrencyList = [
     "country": "Morocco",
     "currencyName": "Moroccan Dirham",
     "currencyCode": "MAD",
+    "currencySymbol": "د.م.",
     "precision": 100,
     "iso2": "MA"
   },
@@ -542,6 +628,7 @@ export const countryCurrencyList = [
     "country": "Myanmar",
     "currencyName": "Kyat",
     "currencyCode": "MMK",
+    "currencySymbol": "K",
     "precision": 100,
     "iso2": "MM"
   },
@@ -549,6 +636,7 @@ export const countryCurrencyList = [
     "country": "Namibia",
     "currencyName": "Namibia Dollar",
     "currencyCode": "NAD",
+    "currencySymbol": "$",
     "precision": 100,
     "iso2": "NA"
   },
@@ -556,6 +644,7 @@ export const countryCurrencyList = [
     "country": "Nepal",
     "currencyName": "Nepalese Rupee",
     "currencyCode": "NPR",
+    "currencySymbol": "Rs",
     "precision": 100,
     "iso2": "NP"
   },
@@ -563,6 +652,7 @@ export const countryCurrencyList = [
     "country": "New Zealand",
     "currencyName": "New Zealand Dollar",
     "currencyCode": "NZD",
+    "currencySymbol": "$",
     "precision": 100,
     "iso2": "NZ"
   },
@@ -570,6 +660,7 @@ export const countryCurrencyList = [
     "country": "Nicaragua",
     "currencyName": "Cordoba Oro",
     "currencyCode": "NIO",
+    "currencySymbol": "C$",
     "precision": 100,
     "iso2": "NI"
   },
@@ -577,6 +668,7 @@ export const countryCurrencyList = [
     "country": "Nigeria",
     "currencyName": "Naira",
     "currencyCode": "NGN",
+    "currencySymbol": "₦",
     "precision": 100,
     "iso2": "NG"
   },
@@ -584,6 +676,7 @@ export const countryCurrencyList = [
     "country": "North Macedonia",
     "currencyName": "Denar",
     "currencyCode": "MKD",
+    "currencySymbol": "ден",
     "precision": 100,
     "iso2": "MK"
   },
@@ -591,6 +684,7 @@ export const countryCurrencyList = [
     "country": "Norway",
     "currencyName": "Norwegian Krone",
     "currencyCode": "NOK",
+    "currencySymbol": "kr",
     "precision": 100,
     "iso2": "NO"
   },
@@ -598,6 +692,7 @@ export const countryCurrencyList = [
     "country": "Oman",
     "currencyName": "Rial Omani",
     "currencyCode": "OMR",
+    "currencySymbol": "ر.ع.",
     "precision": 100,
     "iso2": "OM"
   },
@@ -605,6 +700,7 @@ export const countryCurrencyList = [
     "country": "Pakistan",
     "currencyName": "Pakistan Rupee",
     "currencyCode": "PKR",
+    "currencySymbol": "Rs",
     "precision": 100,
     "iso2": "PK"
   },
@@ -612,6 +708,7 @@ export const countryCurrencyList = [
     "country": "Papua New Guinea",
     "currencyName": "Kina",
     "currencyCode": "PGK",
+    "currencySymbol": "K",
     "precision": 100,
     "iso2": "PG"
   },
@@ -619,6 +716,7 @@ export const countryCurrencyList = [
     "country": "Paraguay",
     "currencyName": "Guarani",
     "currencyCode": "PYG",
+    "currencySymbol": "₲",
     "precision": 100,
     "iso2": "PY"
   },
@@ -626,6 +724,7 @@ export const countryCurrencyList = [
     "country": "Peru",
     "currencyName": "Sol",
     "currencyCode": "PEN",
+    "currencySymbol": "S/",
     "precision": 100,
     "iso2": "PE"
   },
@@ -633,6 +732,7 @@ export const countryCurrencyList = [
     "country": "Philippines",
     "currencyName": "Philippine Peso",
     "currencyCode": "PHP",
+    "currencySymbol": "₱",
     "precision": 100,
     "iso2": "PH"
   },
@@ -640,6 +740,7 @@ export const countryCurrencyList = [
     "country": "Qatar",
     "currencyName": "Qatari Rial",
     "currencyCode": "QAR",
+    "currencySymbol": "ر.ق",
     "precision": 100,
     "iso2": "QA"
   },
@@ -647,6 +748,7 @@ export const countryCurrencyList = [
     "country": "Russian Federation",
     "currencyName": "Russian Ruble",
     "currencyCode": "RUB",
+    "currencySymbol": "₽",
     "precision": 100,
     "iso2": "RU"
   },
@@ -654,6 +756,7 @@ export const countryCurrencyList = [
     "country": "Rwanda",
     "currencyName": "Rwanda Franc",
     "currencyCode": "RWF",
+    "currencySymbol": "RF",
     "precision": 100,
     "iso2": "RW"
   },
@@ -661,6 +764,7 @@ export const countryCurrencyList = [
     "country": "Saint Helena, Ascension and Tristan da Cunha",
     "currencyName": "Saint Helena Pound",
     "currencyCode": "SHP",
+    "currencySymbol": "£",
     "precision": 100,
     "iso2": "SH"
   },
@@ -668,6 +772,7 @@ export const countryCurrencyList = [
     "country": "Samoa",
     "currencyName": "Tala",
     "currencyCode": "WST",
+    "currencySymbol": "T",
     "precision": 100,
     "iso2": "WS"
   },
@@ -675,6 +780,7 @@ export const countryCurrencyList = [
     "country": "Sao Tome and Principe",
     "currencyName": "Dobra",
     "currencyCode": "STD",
+    "currencySymbol": "Db",
     "precision": 100,
     "iso2": "ST"
   },
@@ -682,6 +788,7 @@ export const countryCurrencyList = [
     "country": "Saudi Arabia",
     "currencyName": "Saudi Riyal",
     "currencyCode": "SAR",
+    "currencySymbol": "ر.س",
     "precision": 100,
     "iso2": "SA"
   },
@@ -689,6 +796,7 @@ export const countryCurrencyList = [
     "country": "Seychelles",
     "currencyName": "Seychelles Rupee",
     "currencyCode": "SCR",
+    "currencySymbol": "₨",
     "precision": 100,
     "iso2": "SC"
   },
@@ -696,6 +804,7 @@ export const countryCurrencyList = [
     "country": "Sierra Leone",
     "currencyName": "Leone",
     "currencyCode": "SLL",
+    "currencySymbol": "Le",
     "precision": 100,
     "iso2": "SL"
   },
@@ -703,6 +812,7 @@ export const countryCurrencyList = [
     "country": "Singapore",
     "currencyName": "Singapore Dollar",
     "currencyCode": "SGD",
+    "currencySymbol": "$",
     "precision": 100,
     "iso2": "SG"
   },
@@ -710,6 +820,7 @@ export const countryCurrencyList = [
     "country": "Solomon Islands",
     "currencyName": "Solomon Islands Dollar",
     "currencyCode": "SBD",
+    "currencySymbol": "$",
     "precision": 100,
     "iso2": "SB"
   },
@@ -717,6 +828,7 @@ export const countryCurrencyList = [
     "country": "Somalia",
     "currencyName": "Somali Shilling",
     "currencyCode": "SOS",
+    "currencySymbol": "Sh",
     "precision": 100,
     "iso2": "SO"
   },
@@ -724,6 +836,7 @@ export const countryCurrencyList = [
     "country": "South Africa",
     "currencyName": "Rand",
     "currencyCode": "ZAR",
+    "currencySymbol": "R",
     "precision": 100,
     "iso2": "ZA"
   },
@@ -731,6 +844,7 @@ export const countryCurrencyList = [
     "country": "South Sudan",
     "currencyName": "South Sudanese Pound",
     "currencyCode": "SSP",
+    "currencySymbol": "£",
     "precision": 100,
     "iso2": "SS"
   },
@@ -738,6 +852,7 @@ export const countryCurrencyList = [
     "country": "Sri Lanka",
     "currencyName": "Sri Lanka Rupee",
     "currencyCode": "LKR",
+    "currencySymbol": "Rs",
     "precision": 100,
     "iso2": "LK"
   },
@@ -745,6 +860,7 @@ export const countryCurrencyList = [
     "country": "Sweden",
     "currencyName": "Swedish Krona",
     "currencyCode": "SEK",
+    "currencySymbol": "kr",
     "precision": 100,
     "iso2": "SE"
   },
@@ -752,6 +868,7 @@ export const countryCurrencyList = [
     "country": "Switzerland",
     "currencyName": "Swiss Franc",
     "currencyCode": "CHF",
+    "currencySymbol": "CHF",
     "precision": 100,
     "iso2": "CH"
   },
@@ -759,6 +876,7 @@ export const countryCurrencyList = [
     "country": "Syrian Arab Republic",
     "currencyName": "Syrian Pound",
     "currencyCode": "SYP",
+    "currencySymbol": "ل.س",
     "precision": 100,
     "iso2": "SY"
   },
@@ -766,6 +884,7 @@ export const countryCurrencyList = [
     "country": "Tanzania, United Republic of",
     "currencyName": "Tanzanian Shilling",
     "currencyCode": "TZS",
+    "currencySymbol": "TSh",
     "precision": 100,
     "iso2": "TZ"
   },
@@ -773,13 +892,15 @@ export const countryCurrencyList = [
     "country": "Thailand",
     "currencyName": "Baht",
     "currencyCode": "THB",
+    "currencySymbol": "฿",
     "precision": 100,
     "iso2": "TH"
   },
   {
     "country": "Tonga",
-    "currencyName": "Pa\u2019anga",
+    "currencyName": "Pa’uanga",
     "currencyCode": "TOP",
+    "currencySymbol": "T",
     "precision": 100,
     "iso2": "TO"
   },
@@ -787,6 +908,7 @@ export const countryCurrencyList = [
     "country": "Trinidad and Tobago",
     "currencyName": "Trinidad and Tobago Dollar",
     "currencyCode": "TTD",
+    "currencySymbol": "$",
     "precision": 100,
     "iso2": "TT"
   },
@@ -794,6 +916,7 @@ export const countryCurrencyList = [
     "country": "Tunisia",
     "currencyName": "Tunisian Dinar",
     "currencyCode": "TND",
+    "currencySymbol": "د.ت",
     "precision": 100,
     "iso2": "TN"
   },
@@ -801,6 +924,7 @@ export const countryCurrencyList = [
     "country": "Uganda",
     "currencyName": "Uganda Shilling",
     "currencyCode": "UGX",
+    "currencySymbol": "USh",
     "precision": 100,
     "iso2": "UG"
   },
@@ -808,6 +932,7 @@ export const countryCurrencyList = [
     "country": "United Arab Emirates",
     "currencyName": "UAE Dirham",
     "currencyCode": "AED",
+    "currencySymbol": "د.إ",
     "precision": 100,
     "iso2": "AE"
   },
@@ -815,6 +940,7 @@ export const countryCurrencyList = [
     "country": "United Kingdom",
     "currencyName": "Pound Sterling",
     "currencyCode": "GBP",
+    "currencySymbol": "£",
     "precision": 100,
     "iso2": "GB"
   },
@@ -822,6 +948,7 @@ export const countryCurrencyList = [
     "country": "United States",
     "currencyName": "US Dollar",
     "currencyCode": "USD",
+    "currencySymbol": "$",
     "precision": 100,
     "iso2": "US"
   },
@@ -829,6 +956,7 @@ export const countryCurrencyList = [
     "country": "Uruguay",
     "currencyName": "Peso Uruguayo",
     "currencyCode": "UYU",
+    "currencySymbol": "$",
     "precision": 100,
     "iso2": "UY"
   },
@@ -836,6 +964,7 @@ export const countryCurrencyList = [
     "country": "Uzbekistan",
     "currencyName": "Uzbekistan Sum",
     "currencyCode": "UZS",
+    "currencySymbol": "лв",
     "precision": 100,
     "iso2": "UZ"
   },
@@ -843,6 +972,7 @@ export const countryCurrencyList = [
     "country": "Vanuatu",
     "currencyName": "Vatu",
     "currencyCode": "VUV",
+    "currencySymbol": "Vt",
     "precision": 100,
     "iso2": "VU"
   },
@@ -850,6 +980,7 @@ export const countryCurrencyList = [
     "country": "Viet Nam",
     "currencyName": "Dong",
     "currencyCode": "VND",
+    "currencySymbol": "₫",
     "precision": 100,
     "iso2": "VN"
   }

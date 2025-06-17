@@ -19,6 +19,7 @@ export default function WithdrawModal({
   const queryClient = useQueryClient();
   const [amount, setAmount] = useState<number>(0);
   const [description, setDescription] = useState<string>("");
+  const {currencySymbol, currencyCode} = useUser()
 
   const { mainWalletId } = useUser();
   const recordTransaction = useRecordTransaction();
@@ -83,7 +84,7 @@ export default function WithdrawModal({
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium dark:text-white">
-                Amount (USD)
+                Amount ({currencyCode})
               </label>
               <input
                 type="number"
@@ -96,7 +97,7 @@ export default function WithdrawModal({
                 required
               />
               <span className="text-sm text-gray-500 dark:text-gray-400">
-                Maximum withdrawal: ${maxAmount}
+                Maximum withdrawal: {currencySymbol}{maxAmount}
               </span>
             </div>
             <div>

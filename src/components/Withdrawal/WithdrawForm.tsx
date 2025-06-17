@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ArrowUpIcon } from "@heroicons/react/24/solid";
 import WithdrawModal from "./WithdrawModal";
+import { useUser } from "@/contexts/UserContext";
 
 interface WithdrawFormProps {
   balance: number;
@@ -8,6 +9,7 @@ interface WithdrawFormProps {
 
 export default function WithdrawForm({ balance = 0 }: WithdrawFormProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { currencySymbol, currencyPrecision } = useUser();
 
   return (
     <>
@@ -35,7 +37,7 @@ export default function WithdrawForm({ balance = 0 }: WithdrawFormProps) {
                 Withdraw
               </h3>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Available: ${(balance / 100).toFixed(2)}
+                Available: {currencySymbol}{(balance / (currencyPrecision ?? 100)).toFixed(2)}
               </p>
             </div>
           </div>

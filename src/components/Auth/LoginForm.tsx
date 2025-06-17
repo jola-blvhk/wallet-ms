@@ -8,6 +8,7 @@ import {
   IdentificationIcon,
   CreditCardIcon,
 } from "@heroicons/react/24/outline";
+import { getCurrencyByCountry } from "@/lib/currencyUtils";
 
 export default function LoginForm({
   onToggleForm,
@@ -77,14 +78,20 @@ export default function LoginForm({
       setIsLoading(false);
     }
   };
-
   const completeLogin = (userData: any) => {
+    const country = userData.country || "US";
+    const currencyInfo = getCurrencyByCountry(country);
+    
     setUser({
       identityId,
       firstName: userData.first_name || "User",
       lastName: userData.last_name || "",
       mainWalletId,
       cardWalletId,
+      country,
+      currencyCode: currencyInfo.currencyCode,
+      currencySymbol: currencyInfo.currencySymbol,
+      currencyPrecision: currencyInfo.precision,
     });
 
     toast.success("Login successful!");

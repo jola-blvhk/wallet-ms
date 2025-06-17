@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { use, useState } from "react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
+import { useUser } from "@/contexts/UserContext";
 
 interface BalanceCardProps {
   label: string;
@@ -7,17 +8,28 @@ interface BalanceCardProps {
 }
 
 export default function BalanceCard({ label, balance = 0 }: BalanceCardProps) {
-  const [isBalanceVisible, setIsBalanceVisible] = useState(false);
+  const [isBalanceVisible, setIsBalanceVisible] = useState(false);  const {currencySymbol, currencyPrecision, country, currencyCode} = useUser();
 
   const toggleBalanceVisibility = () => {
     setIsBalanceVisible(!isBalanceVisible);
   };
-
+  
   const formatBalance = (balance: number) => {
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-    }).format(balance / 100);
+    const amount = balance / (currencyPrecision || 100);
+    try {
+      // Get the locale code from the country iso2 code
+      const countryLocale = new Intl.Locale(country?.toLowerCase() || 'en');
+      return new Intl.NumberFormat(countryLocale.language, {
+        style: 'currency',
+        currency: currencySymbol || '$',
+      }).format(amount);
+    } catch (error) {
+      // Fallback formatting if locale is not supported
+      return `${currencySymbol || '$'}${amount.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      })}`;
+    }
   };
 
   return (
@@ -41,7 +53,7 @@ export default function BalanceCard({ label, balance = 0 }: BalanceCardProps) {
       </div>
       <p className="text-2xl font-bold text-green-600 dark:text-green-300">
         {isBalanceVisible ? (
-          formatBalance(balance)
+          formatBalance(balance) 
         ) : (
           <span className="text-2xl tracking-wider">••••••</span>
         )}

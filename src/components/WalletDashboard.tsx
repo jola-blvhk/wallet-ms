@@ -15,8 +15,11 @@ import {
 } from "@heroicons/react/24/outline";
 
 export default function WalletDashboard() {
-  const { mainWalletId, cardWalletId, firstName, lastName, logout } = useUser();
+  const { mainWalletId, cardWalletId, firstName, currencySymbol, lastName, country, currencyCode, logout } = useUser();
   const [mounted, setMounted] = useState(false);
+
+  console.log(currencyCode, country, currencySymbol );
+
 
   useEffect(() => {
     setMounted(true);
@@ -57,22 +60,7 @@ export default function WalletDashboard() {
             </div>
           </div>
           <div className="flex items-center space-x-3">
-            {/* <button
-              onClick={toggleTheme}
-              className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 
-                text-gray-700 dark:text-gray-300"
-              aria-label={
-                theme === "dark"
-                  ? "Switch to light mode"
-                  : "Switch to dark mode"
-              }
-            >
-              {theme === "dark" ? (
-                <SunIcon className="h-5 w-5" />
-              ) : (
-                <MoonIcon className="h-5 w-5" />
-              )}
-            </button> */}
+            
             <button
               onClick={logout}
               className="px-4 py-2 rounded-lg flex items-center transition-colors
