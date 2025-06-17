@@ -7,6 +7,7 @@ import { useUser } from "@/contexts/UserContext";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import { getCountryCallingCode, parsePhoneNumber } from "libphonenumber-js";
 import {
   UserIcon,
   EnvelopeIcon,
@@ -16,6 +17,7 @@ import {
   MapPinIcon,
 } from "@heroicons/react/24/outline";
 import CredentialsDisplay from "./CredentialsDisplay";
+import { countryCurrencyList } from "@/lib/currencyList";
 
 interface PersonalInfo {
   firstName: string;
@@ -26,6 +28,7 @@ interface PersonalInfo {
   gender: string;
   dateOfBirth: string;
   nationality: string;
+   currencyCode: string;
 }
 
 interface AddressInfo {
@@ -58,6 +61,7 @@ export default function SignupForm({
     gender: "",
     dateOfBirth: "",
     nationality: "",
+      currencyCode: "",
   });
 
   // Address information (Step 2)
@@ -124,6 +128,16 @@ export default function SignupForm({
       setIsSubmitting(false);
     },
   });
+
+  // Function to validate phone number
+  const isPhoneNumberValidForNationality = (phone: string, nationalityCountryCode: string) => {
+  try {
+    const parsed = parsePhoneNumber(phone);
+    return parsed?.country === nationalityCountryCode;
+  } catch {
+    return false;
+  }
+};
   // Helper functions for the multi-step form
   const nextStep = () => {
     if (validateStep1()) {
@@ -141,7 +155,8 @@ export default function SignupForm({
       !personalInfo.email ||
       !personalInfo.phone ||
       !personalInfo.gender ||
-      !personalInfo.dateOfBirth
+      !personalInfo.dateOfBirth ||
+      !personalInfo.nationality  // Add nationality check
     ) {
       toast.error("Please fill in all required fields");
       return false;
@@ -151,6 +166,28 @@ export default function SignupForm({
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(personalInfo.email)) {
       toast.error("Please enter a valid email address");
+      return false;
+    }
+
+    // Get the country code from countryCurrencyList
+    const selectedCountry = countryCurrencyList.find(
+      country => country.country === personalInfo.nationality
+    );
+    
+    if (!selectedCountry?.iso2) {
+      toast.error("Invalid country selection");
+      return false;
+    }
+
+    // Validate phone number matches country
+    try {
+      const phoneNumber = parsePhoneNumber(personalInfo.phone);
+      if (!phoneNumber || phoneNumber.country !== selectedCountry.iso2) {
+        toast.error(`Phone number must be a valid ${personalInfo.nationality} phone number`);
+        return false;
+      }
+    } catch (error) {
+      toast.error("Invalid phone number format");
       return false;
     }
 
@@ -221,13 +258,7 @@ export default function SignupForm({
       mainWalletId,
       cardWalletId,
     });
-    // setUser({
-    //   identityId,
-    //   firstName: personalInfo.firstName,
-    //   lastName: personalInfo.lastName,
-    //   mainWalletId,
-    //   cardWalletId,
-    // });
+  
     setSignupComplete(true);
     setIsSubmitting(false);
 
@@ -416,6 +447,37 @@ export default function SignupForm({
                   required
                 />
               </div>
+<div>
+  <label className={labelStyle}>
+    <div className="flex items-center">
+      <UserIcon className={iconStyle} />
+      Nationality*
+    </div>
+  </label>
+  <select
+    name="nationality"
+    value={personalInfo.nationality}
+    onChange={(e) => {
+      const selected = countryCurrencyList?.find(
+        (item) => item.country === e.target.value
+      );
+      setPersonalInfo((prev) => ({
+        ...prev,
+        nationality: selected?.country || "",
+        currencyCode: selected?.currencyCode || "",
+      }));
+    }}
+    className={inputStyle}
+    required
+  >
+    <option value="">Select</option>
+    {countryCurrencyList?.map((item) => (
+      <option key={item.country} value={item.country}>
+        {item.country}
+      </option>
+    ))}
+  </select>
+</div>
 
               <div>
                 <label className={labelStyle}>
@@ -427,7 +489,9 @@ export default function SignupForm({
                 <div className="phone-input-container">
                   <PhoneInput
                     international
-                    defaultCountry="NG"
+                    defaultCountry={countryCurrencyList.find(
+                      country => country.country === personalInfo.nationality
+                    )?.iso2 || "NG"}
                     value={personalInfo.phone}
                     onChange={handlePhoneChange}
                     className="custom-phone-input"
